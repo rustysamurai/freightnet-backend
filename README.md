@@ -1,5 +1,7 @@
 ## Usage
 
+API backend using ExpressJS and sequalize
+
 ```bash
 # Install dependencies
 $ npm install
