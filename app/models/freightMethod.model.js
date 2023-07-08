@@ -1,9 +1,10 @@
 module.exports = (sequelize, Sequelize) => {
-    const Country = sequelize.define("country", {
+    //e.g. air, sea, road
+    const FreightMethod = sequelize.define("freightmethod", {
         name: {
             type: Sequelize.STRING
         },
-        abbreviation: {
+        description: {
             type: Sequelize.STRING
         },
         active: {
@@ -12,5 +13,5 @@ module.exports = (sequelize, Sequelize) => {
     },{
         paranoid: true
     });
-    return Country;
+    return FreightMethod;
 };

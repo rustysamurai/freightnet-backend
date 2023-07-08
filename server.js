@@ -18,13 +18,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // simple route
 app.get("/", (req, res) => {
-    res.json({ message: "Welcome to frieghtlinkr application." });
+    res.json({ message: "Welcome to frieghtnet application." });
 });
 
 const db = require("./app/models");
 db.sequelize.sync({ force: true }).then(() => {
     console.log("Drop and re-sync db.");
 });
+
+require("./app/routes/company.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

@@ -1,11 +1,11 @@
 const db = require("../models");
-const Contact = db.contacts;
+const Quote = db.quotes;
 const Op = db.Sequelize.Op;
 
 // Create and Save new
 exports.create = (req, res) => {
 // Validate request
-    if (!req.body.title) {
+    if (!req.body.name) {
         res.status(400).send({
             message: "Content can not be empty!"
         });
@@ -13,32 +13,20 @@ exports.create = (req, res) => {
     }
 
     // Create
-    const contact = {
-        title: req.body.title,
-        first_name: req.body.first_name,
-        last_name: req.body.last_name,
-        email_1: req.body.email_1,
-        email_2: req.body.email_2,
-        address_1: req.body.address_1,
-        address_2: req.body.address_2,
-        city: req.body.city,
-        zipcode: req.body.zipcode,
-        country: req.body.country,
-        phone_1: req.body.phone_1,
-        phone_2: req.body.phone_2,
-        external_id: req.body.external_id,
+    const quote = {
+        name: req.body.name,
         active: req.body.active ? req.body.active : false
     };
 
     // Save
-    Contact.create(contact)
+    Quote.create(quote)
         .then(data => {
             res.send(data);
         })
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while creating the Contact."
+                    err.message || "Some error occurred while creating the Quote."
             });
         });
 };
@@ -46,16 +34,16 @@ exports.create = (req, res) => {
 // Retrieve all
 exports.findAll = (req, res) => {
     const name = req.query.name;
-    let condition = name ? { titnamele: { [Op.like]: `%${name}%` } } : null;
+    let condition = name ? { name: { [Op.like]: `%${name}%` } } : null;
 
-    Contact.findAll({ where: condition })
+    Quote.findAll({ where: condition })
         .then(data => {
             res.send(data);
         })
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while retrieving contacts."
+                    err.message || "Some error occurred while retrieving quotes."
             });
         });
 };
@@ -64,19 +52,19 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
     const id = req.params.id;
 
-    Contact.findByPk(id)
+    Quote.findByPk(id)
         .then(data => {
             if (data) {
                 res.send(data);
             } else {
                 res.status(404).send({
-                    message: `Cannot find Contact with id=${id}.`
+                    message: `Cannot find Quote with id=${id}.`
                 });
             }
         })
         .catch(err => {
             res.status(500).send({
-                message: "Error retrieving Contact with id=" + id
+                message: "Error retrieving Quote with id=" + id
             });
         });
 };
@@ -85,23 +73,23 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
     const id = req.params.id;
 
-    Contact.update(req.body, {
+    Quote.update(req.body, {
         where: { id: id }
     })
         .then(num => {
             if (num == 1) {
                 res.send({
-                    message: "Contact was updated successfully."
+                    message: "Quote was updated successfully."
                 });
             } else {
                 res.send({
-                    message: `Cannot update Contact with id=${id}. Maybe was not found or req.body is empty!`
+                    message: `Cannot update Quote with id=${id}. Maybe was not found or req.body is empty!`
                 });
             }
         })
         .catch(err => {
             res.status(500).send({
-                message: "Error updating Contact with id=" + id
+                message: "Error updating Quote with id=" + id
             });
         });
 };
@@ -110,23 +98,23 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
     const id = req.params.id;
 
-    Contact.destroy({
+    Quote.destroy({
         where: { id: id }
     })
         .then(num => {
             if (num == 1) {
                 res.send({
-                    message: "Contact was deleted successfully!"
+                    message: "Quote was deleted successfully!"
                 });
             } else {
                 res.send({
-                    message: `Cannot delete Contact with id=${id}. Maybe Contact was not found!`
+                    message: `Cannot delete Quote with id=${id}. Maybe Quote was not found!`
                 });
             }
         })
         .catch(err => {
             res.status(500).send({
-                message: "Could not delete Contact with id=" + id
+                message: "Could not delete Quote with id=" + id
             });
         });
 };
@@ -138,14 +126,14 @@ exports.delete = (req, res) => {
 
 // Find all active
 exports.findAllPublished = (req, res) => {
-    Contact.findAll({ where: { active: true } })
+    Quote.findAll({ where: { active: true } })
         .then(data => {
             res.send(data);
         })
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while retrieving contacts."
+                    err.message || "Some error occurred while retrieving quotes."
             });
         });
 };

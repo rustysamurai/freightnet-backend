@@ -1,11 +1,11 @@
 const db = require("../models");
-const Contact = db.contacts;
+const Country = db.countries;
 const Op = db.Sequelize.Op;
 
 // Create and Save new
 exports.create = (req, res) => {
 // Validate request
-    if (!req.body.title) {
+    if (!req.body.name) {
         res.status(400).send({
             message: "Content can not be empty!"
         });
@@ -13,49 +13,38 @@ exports.create = (req, res) => {
     }
 
     // Create
-    const contact = {
-        title: req.body.title,
-        first_name: req.body.first_name,
-        last_name: req.body.last_name,
-        email_1: req.body.email_1,
-        email_2: req.body.email_2,
-        address_1: req.body.address_1,
-        address_2: req.body.address_2,
-        city: req.body.city,
-        zipcode: req.body.zipcode,
-        country: req.body.country,
-        phone_1: req.body.phone_1,
-        phone_2: req.body.phone_2,
-        external_id: req.body.external_id,
+    const country = {
+        name: req.body.name,
+        abbreviation: req.body.abbreviation,
         active: req.body.active ? req.body.active : false
     };
 
     // Save
-    Contact.create(contact)
+    Country.create(country)
         .then(data => {
             res.send(data);
         })
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while creating the Contact."
+                    err.message || "Some error occurred while creating the Country."
             });
         });
 };
 
 // Retrieve all
 exports.findAll = (req, res) => {
-    const name = req.query.name;
-    let condition = name ? { titnamele: { [Op.like]: `%${name}%` } } : null;
+    const title = req.query.title;
+    let condition = title ? { title: { [Op.like]: `%${title}%` } } : null;
 
-    Contact.findAll({ where: condition })
+    Country.findAll({ where: condition })
         .then(data => {
             res.send(data);
         })
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while retrieving contacts."
+                    err.message || "Some error occurred while retrieving countries."
             });
         });
 };
@@ -64,19 +53,19 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
     const id = req.params.id;
 
-    Contact.findByPk(id)
+    Country.findByPk(id)
         .then(data => {
             if (data) {
                 res.send(data);
             } else {
                 res.status(404).send({
-                    message: `Cannot find Contact with id=${id}.`
+                    message: `Cannot find Country with id=${id}.`
                 });
             }
         })
         .catch(err => {
             res.status(500).send({
-                message: "Error retrieving Contact with id=" + id
+                message: "Error retrieving Country with id=" + id
             });
         });
 };
@@ -85,23 +74,23 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
     const id = req.params.id;
 
-    Contact.update(req.body, {
+    Country.update(req.body, {
         where: { id: id }
     })
         .then(num => {
             if (num == 1) {
                 res.send({
-                    message: "Contact was updated successfully."
+                    message: "Country was updated successfully."
                 });
             } else {
                 res.send({
-                    message: `Cannot update Contact with id=${id}. Maybe was not found or req.body is empty!`
+                    message: `Cannot update Country with id=${id}. Maybe Tutorial was not found or req.body is empty!`
                 });
             }
         })
         .catch(err => {
             res.status(500).send({
-                message: "Error updating Contact with id=" + id
+                message: "Error updating Country with id=" + id
             });
         });
 };
@@ -110,23 +99,23 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
     const id = req.params.id;
 
-    Contact.destroy({
+    Country.destroy({
         where: { id: id }
     })
         .then(num => {
             if (num == 1) {
                 res.send({
-                    message: "Contact was deleted successfully!"
+                    message: "Country was deleted successfully!"
                 });
             } else {
                 res.send({
-                    message: `Cannot delete Contact with id=${id}. Maybe Contact was not found!`
+                    message: `Cannot delete Country with id=${id}. Maybe Country was not found!`
                 });
             }
         })
         .catch(err => {
             res.status(500).send({
-                message: "Could not delete Contact with id=" + id
+                message: "Could not delete Country with id=" + id
             });
         });
 };
@@ -138,14 +127,14 @@ exports.delete = (req, res) => {
 
 // Find all active
 exports.findAllPublished = (req, res) => {
-    Contact.findAll({ where: { active: true } })
+    Country.findAll({ where: { active: true } })
         .then(data => {
             res.send(data);
         })
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while retrieving contacts."
+                    err.message || "Some error occurred while retrieving countries."
             });
         });
 };

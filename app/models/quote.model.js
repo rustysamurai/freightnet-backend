@@ -1,9 +1,6 @@
 module.exports = (sequelize, Sequelize) => {
-    const Country = sequelize.define("country", {
+    const Quote = sequelize.define("quote", {
         name: {
-            type: Sequelize.STRING
-        },
-        abbreviation: {
             type: Sequelize.STRING
         },
         active: {
@@ -12,5 +9,5 @@ module.exports = (sequelize, Sequelize) => {
     },{
         paranoid: true
     });
-    return Country;
+    return Quote;
 };

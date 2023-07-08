@@ -5,7 +5,7 @@ const Op = db.Sequelize.Op;
 // Create and Save new
 exports.create = (req, res) => {
 // Validate request
-    if (!req.body.title) {
+    if (!req.body.name) {
         res.status(400).send({
             message: "Content can not be empty!"
         });
@@ -14,7 +14,7 @@ exports.create = (req, res) => {
 
     // Create
     const freighttype = {
-        label: req.body.label,
+        name: req.body.name,
         active: req.body.active ? req.body.active : false
     };
 
@@ -33,8 +33,8 @@ exports.create = (req, res) => {
 
 // Retrieve all
 exports.findAll = (req, res) => {
-    const title = req.query.title;
-    let condition = title ? { title: { [Op.like]: `%${title}%` } } : null;
+    const name = req.query.name;
+    let condition = name ? { name: { [Op.like]: `%${name}%` } } : null;
 
     FreightType.findAll({ where: condition })
         .then(data => {
@@ -83,7 +83,7 @@ exports.update = (req, res) => {
                 });
             } else {
                 res.send({
-                    message: `Cannot update Freight Type with id=${id}. Maybe Tutorial was not found or req.body is empty!`
+                    message: `Cannot update Freight Type with id=${id}. Maybe was not found or req.body is empty!`
                 });
             }
         })

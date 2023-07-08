@@ -5,7 +5,7 @@ const Op = db.Sequelize.Op;
 // Create and Save a new Tutorial
 exports.create = (req, res) => {
 // Validate request
-    if (!req.body.title) {
+    if (!req.body.name) {
         res.status(400).send({
             message: "Content can not be empty!"
         });
@@ -15,17 +15,17 @@ exports.create = (req, res) => {
     // Create
     const company = {
         name: req.body.name,
-        tradingas: req.body.tradingas,
+        trading_as: req.body.trading_as,
         email: req.body.email,
-        address1: req.body.address1,
-        address2: req.body.address2,
+        address_1: req.body.address_1,
+        address_2: req.body.address_2,
         city: req.body.city,
         zipcode: req.body.zipcode,
         country: req.body.country,
-        phone1: req.body.phone1,
-        phone2: req.body.phone2,
+        phone_1: req.body.phone_1,
+        phone_2: req.body.phone_2,
         website: req.body.website,
-        salesforceaccountid: req.body.salesforceaccountid,
+        external_id: req.body.external_id,
         active: req.body.active ? req.body.active : false
     };
 
@@ -44,8 +44,8 @@ exports.create = (req, res) => {
 
 // Retrieve all from the database.
 exports.findAll = (req, res) => {
-    const title = req.query.title;
-    let condition = title ? { title: { [Op.like]: `%${title}%` } } : null;
+    const name = req.query.title;
+    let condition = name ? { name: { [Op.like]: `%${name}%` } } : null;
 
     Company.findAll({ where: condition })
         .then(data => {
@@ -94,7 +94,7 @@ exports.update = (req, res) => {
                 });
             } else {
                 res.send({
-                    message: `Cannot update Company with id=${id}. Maybe Tutorial was not found or req.body is empty!`
+                    message: `Cannot update Company with id=${id}. Maybe req.body is empty!`
                 });
             }
         })
@@ -144,7 +144,7 @@ exports.findAllPublished = (req, res) => {
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while retrieving contacts."
+                    err.message || "Some error occurred while retrieving companies."
             });
         });
 };
