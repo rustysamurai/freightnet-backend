@@ -1,28 +1,29 @@
 module.exports = app => {
-    const freightMethod = require("../controllers/freightMethod.controller.js");
+  const { authJwt } = require("../middleware");
+    const freightType = require("../controllers/freightType.controller.js");
   
     var router = require("express").Router();
   
-    // Create a new freightMethod
-    router.post("/", freightMethod.create);
+    // Create a new freightType
+    router.post("/", [authJwt.verifyToken], freightType.create);
   
-    // Retrieve all freightMethods
-    router.get("/", freightMethod.findAll);
+    // Retrieve all freightTypes
+    router.get("/", [authJwt.verifyToken], freightType.findAll);
   
-    // Retrieve all published freightMethods
-    router.get("/published", freightMethod.findAllPublished);
+    // Retrieve all active freightTypes
+    router.get("/active", [authJwt.verifyToken], freightType.findAllPublished);
   
-    // Retrieve a single freightMethod with id
-    router.get("/:id", freightMethod.findOne);
+    // Retrieve a single freightType with id
+    router.get("/:id", [authJwt.verifyToken], freightType.findOne);
   
-    // Update a freightMethod with id
-    router.put("/:id", freightMethod.update);
+    // Update a freightType with id
+    router.put("/:id", [authJwt.verifyToken], freightType.update);
   
-    // Delete a freightMethod with id
-    router.delete("/:id", freightMethod.delete);
+    // Delete a freightType with id
+    router.delete("/:id", [authJwt.verifyToken], freightType.delete);
   
-    // Delete all freightMethods
-    //router.delete("/", freightMethod.deleteAll);
+    // Delete all freightTypes
+    //router.delete("/", [authJwt.verifyToken], freightType.deleteAll);
   
-    app.use('/api/freightMethod', router);
+    app.use('/api/freightType', router);
   };

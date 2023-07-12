@@ -1,28 +1,29 @@
 module.exports = app => {
+  const { authJwt } = require("../middleware");
     const shipmentLeg = require("../controllers/shipmentLeg.controller.js");
   
     var router = require("express").Router();
   
     // Create a new shipmentLeg
-    router.post("/", shipmentLeg.create);
+    router.post("/", [authJwt.verifyToken], shipmentLeg.create);
   
     // Retrieve all shipmentLegs
-    router.get("/", shipmentLeg.findAll);
+    router.get("/", [authJwt.verifyToken], shipmentLeg.findAll);
   
-    // Retrieve all published shipmentLegs
-    router.get("/published", shipmentLeg.findAllPublished);
+    // Retrieve all active shipmentLegs
+    router.get("/active", [authJwt.verifyToken], shipmentLeg.findAllPublished);
   
     // Retrieve a single shipmentLeg with id
-    router.get("/:id", shipmentLeg.findOne);
+    router.get("/:id", [authJwt.verifyToken], shipmentLeg.findOne);
   
     // Update a shipmentLeg with id
-    router.put("/:id", shipmentLeg.update);
+    router.put("/:id", [authJwt.verifyToken], shipmentLeg.update);
   
     // Delete a shipmentLeg with id
-    router.delete("/:id", shipmentLeg.delete);
+    router.delete("/:id", [authJwt.verifyToken], shipmentLeg.delete);
   
     // Delete all shipmentLegs
-    //router.delete("/", shipmentLeg.deleteAll);
+    //router.delete("/", [authJwt.verifyToken], shipmentLeg.deleteAll);
   
     app.use('/api/shipmentLeg', router);
   };

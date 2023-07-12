@@ -1,28 +1,29 @@
 module.exports = app => {
-    const legType = require("../controllers/legType.controller.js");
+  const { authJwt } = require("../middleware");
+    const pallet = require("../controllers/pallet.controller.js");
   
     var router = require("express").Router();
   
-    // Create a new legType
-    router.post("/", legType.create);
+    // Create a new pallet
+    router.post("/", [authJwt.verifyToken], pallet.create);
   
-    // Retrieve all legTypes
-    router.get("/", legType.findAll);
+    // Retrieve all pallets
+    router.get("/", [authJwt.verifyToken], pallet.findAll);
   
-    // Retrieve all published legTypes
-    router.get("/published", legType.findAllPublished);
+    // Retrieve all active pallets
+    router.get("/active", [authJwt.verifyToken], pallet.findAllPublished);
   
-    // Retrieve a single legType with id
-    router.get("/:id", legType.findOne);
+    // Retrieve a single pallet with id
+    router.get("/:id", [authJwt.verifyToken], pallet.findOne);
   
-    // Update a legType with id
-    router.put("/:id", legType.update);
+    // Update a pallet with id
+    router.put("/:id", [authJwt.verifyToken], pallet.update);
   
-    // Delete a legType with id
-    router.delete("/:id", legType.delete);
+    // Delete a pallet with id
+    router.delete("/:id", [authJwt.verifyToken], pallet.delete);
   
-    // Delete all legTypes
-    //router.delete("/", legType.deleteAll);
+    // Delete all pallets
+    //router.delete("/", [authJwt.verifyToken], pallet.deleteAll);
   
-    app.use('/api/legType', router);
+    app.use('/api/pallet', router);
   };

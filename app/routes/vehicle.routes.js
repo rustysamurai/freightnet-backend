@@ -1,28 +1,29 @@
 module.exports = app => {
-    const state = require("../controllers/state.controller.js");
+  const { authJwt } = require("../middleware");
+    const vehicle = require("../controllers/vehicle.controller.js");
   
     var router = require("express").Router();
   
-    // Create a new state
-    router.post("/", state.create);
+    // Create a new vehicle
+    router.post("/", [authJwt.verifyToken], vehicle.create);
   
-    // Retrieve all states
-    router.get("/", state.findAll);
+    // Retrieve all vehicles
+    router.get("/", [authJwt.verifyToken], vehicle.findAll);
   
-    // Retrieve all published states
-    router.get("/published", state.findAllPublished);
+    // Retrieve all active vehicles
+    router.get("/active", [authJwt.verifyToken], vehicle.findAllPublished);
   
-    // Retrieve a single state with id
-    router.get("/:id", state.findOne);
+    // Retrieve a single vehicle with id
+    router.get("/:id", [authJwt.verifyToken], vehicle.findOne);
   
-    // Update a state with id
-    router.put("/:id", state.update);
+    // Update a vehicle with id
+    router.put("/:id", [authJwt.verifyToken], vehicle.update);
   
-    // Delete a state with id
-    router.delete("/:id", state.delete);
+    // Delete a vehicle with id
+    router.delete("/:id", [authJwt.verifyToken], vehicle.delete);
   
-    // Delete all states
-    //router.delete("/", state.deleteAll);
+    // Delete all vehicles
+    //router.delete("/", [authJwt.verifyToken], vehicle.deleteAll);
   
-    app.use('/api/state', router);
+    app.use('/api/vehicle', router);
   };

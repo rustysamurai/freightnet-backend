@@ -1,28 +1,29 @@
 module.exports = app => {
-    const state = require("../controllers/state.controller.js");
+  const { authJwt } = require("../middleware");
+    const tour = require("../controllers/tour.controller.js");
   
     var router = require("express").Router();
   
-    // Create a new state
-    router.post("/", state.create);
+    // Create a new tour
+    router.post("/", [authJwt.verifyToken], tour.create);
   
-    // Retrieve all states
-    router.get("/", state.findAll);
+    // Retrieve all tours
+    router.get("/",[authJwt.verifyToken],  tour.findAll);
   
-    // Retrieve all published states
-    router.get("/published", state.findAllPublished);
+    // Retrieve all active tours
+    router.get("/active", [authJwt.verifyToken], tour.findAllPublished);
   
-    // Retrieve a single state with id
-    router.get("/:id", state.findOne);
+    // Retrieve a single tour with id
+    router.get("/:id", [authJwt.verifyToken], tour.findOne);
   
-    // Update a state with id
-    router.put("/:id", state.update);
+    // Update a tour with id
+    router.put("/:id", [authJwt.verifyToken], tour.update);
   
-    // Delete a state with id
-    router.delete("/:id", state.delete);
+    // Delete a tour with id
+    router.delete("/:id", [authJwt.verifyToken], tour.delete);
   
-    // Delete all states
-    //router.delete("/", state.deleteAll);
+    // Delete all tours
+    //router.delete("/", [authJwt.verifyToken], tour.deleteAll);
   
-    app.use('/api/state', router);
+    app.use('/api/tour', router);
   };

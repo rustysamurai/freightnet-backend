@@ -1,28 +1,29 @@
 module.exports = app => {
+  const { authJwt } = require("../middleware");
     const country = require("../controllers/country.controller.js");
   
     var router = require("express").Router();
   
     // Create a new country
-    router.post("/", country.create);
+    router.post("/", [authJwt.verifyToken], country.create);
   
     // Retrieve all countrys
-    router.get("/", country.findAll);
+    router.get("/", [authJwt.verifyToken], country.findAll);
   
-    // Retrieve all published countrys
-    router.get("/published", country.findAllPublished);
+    // Retrieve all active countrys
+    router.get("/active", [authJwt.verifyToken], country.findAllPublished);
   
     // Retrieve a single country with id
-    router.get("/:id", country.findOne);
+    router.get("/:id", [authJwt.verifyToken], country.findOne);
   
     // Update a country with id
-    router.put("/:id", country.update);
+    router.put("/:id", [authJwt.verifyToken], country.update);
   
     // Delete a country with id
-    router.delete("/:id", country.delete);
+    router.delete("/:id", [authJwt.verifyToken], country.delete);
   
     // Delete all countrys
-    //router.delete("/", country.deleteAll);
+    //router.delete("/", [authJwt.verifyToken], country.deleteAll);
   
     app.use('/api/country', router);
   };
