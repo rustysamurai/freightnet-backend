@@ -1,0 +1,28 @@
+module.exports = app => {
+    const container = require("../controllers/container.controller.js");
+  
+    var router = require("express").Router();
+  
+    // Create a new container
+    router.post("/", container.create);
+  
+    // Retrieve all containers
+    router.get("/", container.findAll);
+  
+    // Retrieve all published containers
+    router.get("/published", container.findAllPublished);
+  
+    // Retrieve a single container with id
+    router.get("/:id", container.findOne);
+  
+    // Update a container with id
+    router.put("/:id", container.update);
+  
+    // Delete a container with id
+    router.delete("/:id", container.delete);
+  
+    // Delete all containers
+    //router.delete("/", container.deleteAll);
+  
+    app.use('/api/container', router);
+  };
