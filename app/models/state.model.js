@@ -5,6 +5,9 @@ module.exports = (sequelize, Sequelize) => {
         },
         state: {
             type: Sequelize.BOOLEAN
+        },
+        active: {
+            type: Sequelize.BOOLEAN
         }
     },{
         paranoid: true

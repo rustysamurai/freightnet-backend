@@ -5,25 +5,25 @@ module.exports = app => {
     var router = require("express").Router();
   
     // Create a new freightType
-    router.post("/", [authJwt.verifyToken], freightType.create);
+    router.post("/",  freightType.create);
   
     // Retrieve all freightTypes
-    router.get("/", [authJwt.verifyToken], freightType.findAll);
+    router.get("/",  freightType.findAll);
   
     // Retrieve all active freightTypes
-    router.get("/active", [authJwt.verifyToken], freightType.findAllPublished);
+    router.get("/active",  freightType.findAllPublished);
   
     // Retrieve a single freightType with id
-    router.get("/:id", [authJwt.verifyToken], freightType.findOne);
+    router.get("/:id",  freightType.findOne);
   
     // Update a freightType with id
-    router.put("/:id", [authJwt.verifyToken], freightType.update);
+    router.put("/:id",  freightType.update);
   
     // Delete a freightType with id
-    router.delete("/:id", [authJwt.verifyToken], freightType.delete);
+    router.delete("/:id",  freightType.delete);
   
     // Delete all freightTypes
-    //router.delete("/", [authJwt.verifyToken], freightType.deleteAll);
+    //router.delete("/",  freightType.deleteAll);
   
     app.use('/api/freightType', router);
   };

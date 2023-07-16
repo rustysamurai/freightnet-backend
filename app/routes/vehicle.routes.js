@@ -5,25 +5,25 @@ module.exports = app => {
     var router = require("express").Router();
   
     // Create a new vehicle
-    router.post("/", [authJwt.verifyToken], vehicle.create);
+    router.post("/",  vehicle.create);
   
     // Retrieve all vehicles
-    router.get("/", [authJwt.verifyToken], vehicle.findAll);
+    router.get("/",  vehicle.findAll);
   
     // Retrieve all active vehicles
-    router.get("/active", [authJwt.verifyToken], vehicle.findAllPublished);
+    router.get("/active",  vehicle.findAllPublished);
   
     // Retrieve a single vehicle with id
-    router.get("/:id", [authJwt.verifyToken], vehicle.findOne);
+    router.get("/:id",  vehicle.findOne);
   
     // Update a vehicle with id
-    router.put("/:id", [authJwt.verifyToken], vehicle.update);
+    router.put("/:id",  vehicle.update);
   
     // Delete a vehicle with id
-    router.delete("/:id", [authJwt.verifyToken], vehicle.delete);
+    router.delete("/:id",  vehicle.delete);
   
     // Delete all vehicles
-    //router.delete("/", [authJwt.verifyToken], vehicle.deleteAll);
+    //router.delete("/",  vehicle.deleteAll);
   
     app.use('/api/vehicle', router);
   };

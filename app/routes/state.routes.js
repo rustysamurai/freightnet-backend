@@ -5,25 +5,25 @@ module.exports = app => {
     var router = require("express").Router();
   
     // Create a new state
-    router.post("/", [authJwt.verifyToken], state.create);
+    router.post("/",  state.create);
   
     // Retrieve all states
-    router.get("/", [authJwt.verifyToken], state.findAll);
+    router.get("/",  state.findAll);
   
     // Retrieve all active states
-    router.get("/active", [authJwt.verifyToken], state.findAllPublished);
+    router.get("/active",  state.findAllPublished);
   
     // Retrieve a single state with id
-    router.get("/:id", [authJwt.verifyToken], state.findOne);
+    router.get("/:id",  state.findOne);
   
     // Update a state with id
-    router.put("/:id", [authJwt.verifyToken], state.update);
+    router.put("/:id",  state.update);
   
     // Delete a state with id
-    router.delete("/:id", [authJwt.verifyToken], state.delete);
+    router.delete("/:id",  state.delete);
   
     // Delete all states
-    //router.delete("/", [authJwt.verifyToken], state.deleteAll);
+    //router.delete("/",  state.deleteAll);
   
     app.use('/api/state', router);
   };

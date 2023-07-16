@@ -5,25 +5,25 @@ module.exports = app => {
     var router = require("express").Router();
   
     // Create a new contact
-    router.post("/", [authJwt.verifyToken], contact.create);
+    router.post("/",  contact.create);
   
     // Retrieve all contacts
-    router.get("/", [authJwt.verifyToken], contact.findAll);
+    router.get("/",  contact.findAll);
   
     // Retrieve all active contacts
-    router.get("/active", [authJwt.verifyToken], contact.findAllPublished);
+    router.get("/active",  contact.findAllPublished);
   
     // Retrieve a single contact with id
-    router.get("/:id", [authJwt.verifyToken], contact.findOne);
+    router.get("/:id",  contact.findOne);
   
     // Update a contact with id
-    router.put("/:id", [authJwt.verifyToken], contact.update);
+    router.put("/:id",  contact.update);
   
     // Delete a contact with id
-    router.delete("/:id", [authJwt.verifyToken], contact.delete);
+    router.delete("/:id",  contact.delete);
   
     // Delete all contacts
-    //router.delete("/", [authJwt.verifyToken], contact.deleteAll);
+    //router.delete("/",  contact.deleteAll);
   
     app.use('/api/contact', router);
   };

@@ -5,25 +5,25 @@ module.exports = app => {
     var router = require("express").Router();
   
     // Create a new flightCase
-    router.post("/", [authJwt.verifyToken], flightCase.create);
+    router.post("/",  flightCase.create);
   
     // Retrieve all flightCases
-    router.get("/", [authJwt.verifyToken], flightCase.findAll);
+    router.get("/",  flightCase.findAll);
   
     // Retrieve all active flightCases
-    router.get("/active", [authJwt.verifyToken], flightCase.findAllPublished);
+    router.get("/active",  flightCase.findAllPublished);
   
     // Retrieve a single flightCase with id
-    router.get("/:id", [authJwt.verifyToken], flightCase.findOne);
+    router.get("/:id",  flightCase.findOne);
   
     // Update a flightCase with id
-    router.put("/:id", [authJwt.verifyToken], flightCase.update);
+    router.put("/:id",  flightCase.update);
   
     // Delete a flightCase with id
-    router.delete("/:id", [authJwt.verifyToken], flightCase.delete);
+    router.delete("/:id",  flightCase.delete);
   
     // Delete all flightCases
-    //router.delete("/", [authJwt.verifyToken], flightCase.deleteAll);
+    //router.delete("/",  flightCase.deleteAll);
   
     app.use('/api/flightCase', router);
   };

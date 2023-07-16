@@ -5,25 +5,25 @@ module.exports = app => {
     var router = require("express").Router();
   
     // Create a new pallet
-    router.post("/", [authJwt.verifyToken], pallet.create);
+    router.post("/",  pallet.create);
   
     // Retrieve all pallets
-    router.get("/", [authJwt.verifyToken], pallet.findAll);
+    router.get("/",  pallet.findAll);
   
     // Retrieve all active pallets
-    router.get("/active", [authJwt.verifyToken], pallet.findAllPublished);
+    router.get("/active",  pallet.findAllPublished);
   
     // Retrieve a single pallet with id
-    router.get("/:id", [authJwt.verifyToken], pallet.findOne);
+    router.get("/:id",  pallet.findOne);
   
     // Update a pallet with id
-    router.put("/:id", [authJwt.verifyToken], pallet.update);
+    router.put("/:id",  pallet.update);
   
     // Delete a pallet with id
-    router.delete("/:id", [authJwt.verifyToken], pallet.delete);
+    router.delete("/:id",  pallet.delete);
   
     // Delete all pallets
-    //router.delete("/", [authJwt.verifyToken], pallet.deleteAll);
+    //router.delete("/",  pallet.deleteAll);
   
     app.use('/api/pallet', router);
   };

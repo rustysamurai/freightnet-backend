@@ -36,9 +36,9 @@ module.exports = (sequelize, Sequelize) => {
         license_plate: {
             type: Sequelize.STRING
         },
-        current_meter: {
-            type: Sequelize.STRING
-        },
+        // current_meter: {
+        //     type: Sequelize.STRING
+        // },
         purchase_vendor: {
             type: Sequelize.STRING
         },
@@ -57,9 +57,9 @@ module.exports = (sequelize, Sequelize) => {
         fuel_type: {
             type: Sequelize.STRING
         },
-        notes: {
-            type: Sequelize.STRING
-        },
+        // notes: {
+        //     type: Sequelize.STRING
+        // },
         registration_state: {
             type: Sequelize.STRING
         },

@@ -5,25 +5,25 @@ module.exports = app => {
     var router = require("express").Router();
   
     // Create a new legType
-    router.post("/", [authJwt.verifyToken], legType.create);
+    router.post("/",  legType.create);
   
     // Retrieve all legTypes
-    router.get("/", [authJwt.verifyToken], legType.findAll);
+    router.get("/",  legType.findAll);
   
     // Retrieve all active legTypes
-    router.get("/active", [authJwt.verifyToken], legType.findAllPublished);
+    router.get("/active",  legType.findAllPublished);
   
     // Retrieve a single legType with id
-    router.get("/:id", [authJwt.verifyToken], legType.findOne);
+    router.get("/:id",  legType.findOne);
   
     // Update a legType with id
-    router.put("/:id", [authJwt.verifyToken], legType.update);
+    router.put("/:id",  legType.update);
   
     // Delete a legType with id
-    router.delete("/:id", [authJwt.verifyToken], legType.delete);
+    router.delete("/:id",  legType.delete);
   
     // Delete all legTypes
-    //router.delete("/", [authJwt.verifyToken], legType.deleteAll);
+    //router.delete("/",  legType.deleteAll);
   
     app.use('/api/legType', router);
   };

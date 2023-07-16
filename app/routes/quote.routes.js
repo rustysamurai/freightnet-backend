@@ -5,25 +5,25 @@ module.exports = app => {
     var router = require("express").Router();
   
     // Create a new quote
-    router.post("/", [authJwt.verifyToken], quote.create);
+    router.post("/",  quote.create);
   
     // Retrieve all quotes
-    router.get("/", [authJwt.verifyToken], quote.findAll);
+    router.get("/",  quote.findAll);
   
     // Retrieve all active quotes
-    router.get("/active", [authJwt.verifyToken], quote.findAllPublished);
+    router.get("/active",  quote.findAllPublished);
   
     // Retrieve a single quote with id
-    router.get("/:id",[authJwt.verifyToken], quote.findOne);
+    router.get("/:id", quote.findOne);
   
     // Update a quote with id
-    router.put("/:id", [authJwt.verifyToken], quote.update);
+    router.put("/:id",  quote.update);
   
     // Delete a quote with id
-    router.delete("/:id", [authJwt.verifyToken], quote.delete);
+    router.delete("/:id",  quote.delete);
   
     // Delete all quotes
-    //router.delete("/", [authJwt.verifyToken], quote.deleteAll);
+    //router.delete("/",  quote.deleteAll);
   
     app.use('/api/quote', router);
   };

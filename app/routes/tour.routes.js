@@ -5,25 +5,25 @@ module.exports = app => {
     var router = require("express").Router();
   
     // Create a new tour
-    router.post("/", [authJwt.verifyToken], tour.create);
+    router.post("/",  tour.create);
   
     // Retrieve all tours
-    router.get("/",[authJwt.verifyToken],  tour.findAll);
+    router.get("/",  tour.findAll);
   
     // Retrieve all active tours
-    router.get("/active", [authJwt.verifyToken], tour.findAllPublished);
+    router.get("/active",  tour.findAllPublished);
   
     // Retrieve a single tour with id
-    router.get("/:id", [authJwt.verifyToken], tour.findOne);
+    router.get("/:id",  tour.findOne);
   
     // Update a tour with id
-    router.put("/:id", [authJwt.verifyToken], tour.update);
+    router.put("/:id",  tour.update);
   
     // Delete a tour with id
-    router.delete("/:id", [authJwt.verifyToken], tour.delete);
+    router.delete("/:id",  tour.delete);
   
     // Delete all tours
-    //router.delete("/", [authJwt.verifyToken], tour.deleteAll);
+    //router.delete("/",  tour.deleteAll);
   
     app.use('/api/tour', router);
   };

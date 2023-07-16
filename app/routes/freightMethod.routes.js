@@ -5,25 +5,25 @@ module.exports = app => {
     var router = require("express").Router();
   
     // Create a new freightMethod
-    router.post("/", [authJwt.verifyToken], freightMethod.create);
+    router.post("/",  freightMethod.create);
   
     // Retrieve all freightMethods
-    router.get("/", [authJwt.verifyToken], freightMethod.findAll);
+    router.get("/",  freightMethod.findAll);
   
     // Retrieve all active freightMethods
-    router.get("/active", [authJwt.verifyToken], freightMethod.findAllPublished);
+    router.get("/active",  freightMethod.findAllPublished);
   
     // Retrieve a single freightMethod with id
-    router.get("/:id", [authJwt.verifyToken], freightMethod.findOne);
+    router.get("/:id",  freightMethod.findOne);
   
     // Update a freightMethod with id
-    router.put("/:id", [authJwt.verifyToken], freightMethod.update);
+    router.put("/:id",  freightMethod.update);
   
     // Delete a freightMethod with id
-    router.delete("/:id", [authJwt.verifyToken], freightMethod.delete);
+    router.delete("/:id",  freightMethod.delete);
   
     // Delete all freightMethods
-    //router.delete("/", [authJwt.verifyToken], freightMethod.deleteAll);
+    //router.delete("/",  freightMethod.deleteAll);
   
     app.use('/api/freightMethod', router);
   };

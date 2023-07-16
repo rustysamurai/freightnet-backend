@@ -4,6 +4,9 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING,
             allowNull: false
         },
+        description: {
+            type: Sequelize.STRING,
+        },
         active: {
             type: Sequelize.BOOLEAN
         }

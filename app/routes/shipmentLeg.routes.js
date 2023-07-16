@@ -5,25 +5,25 @@ module.exports = app => {
     var router = require("express").Router();
   
     // Create a new shipmentLeg
-    router.post("/", [authJwt.verifyToken], shipmentLeg.create);
+    router.post("/",  shipmentLeg.create);
   
     // Retrieve all shipmentLegs
-    router.get("/", [authJwt.verifyToken], shipmentLeg.findAll);
+    router.get("/",  shipmentLeg.findAll);
   
     // Retrieve all active shipmentLegs
-    router.get("/active", [authJwt.verifyToken], shipmentLeg.findAllPublished);
+    router.get("/active",  shipmentLeg.findAllPublished);
   
     // Retrieve a single shipmentLeg with id
-    router.get("/:id", [authJwt.verifyToken], shipmentLeg.findOne);
+    router.get("/:id",  shipmentLeg.findOne);
   
     // Update a shipmentLeg with id
-    router.put("/:id", [authJwt.verifyToken], shipmentLeg.update);
+    router.put("/:id",  shipmentLeg.update);
   
     // Delete a shipmentLeg with id
-    router.delete("/:id", [authJwt.verifyToken], shipmentLeg.delete);
+    router.delete("/:id",  shipmentLeg.delete);
   
     // Delete all shipmentLegs
-    //router.delete("/", [authJwt.verifyToken], shipmentLeg.deleteAll);
+    //router.delete("/",  shipmentLeg.deleteAll);
   
     app.use('/api/shipmentLeg', router);
   };
