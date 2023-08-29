@@ -3,8 +3,8 @@ module.exports = (sequelize, Sequelize) => {
         state_abbreviation: {
             type: Sequelize.STRING
         },
-        state: {
-            type: Sequelize.BOOLEAN
+        state_full: {
+            type: Sequelize.STRING
         },
         active: {
             type: Sequelize.BOOLEAN

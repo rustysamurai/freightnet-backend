@@ -42,6 +42,7 @@ require("./app/routes/shipmentLeg.routes")(app);
 require("./app/routes/state.routes")(app);
 require("./app/routes/tour.routes")(app);
 require("./app/routes/vehicle.routes")(app);
+require("./app/routes/vehicleType.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

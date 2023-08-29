@@ -25,5 +25,5 @@ module.exports = app => {
     // Delete all shipmentLegs
     //router.delete("/",  shipmentLeg.deleteAll);
   
-    app.use('/api/shipmentLeg', router);
+    app.use('/api/shipmentleg', router);
   };

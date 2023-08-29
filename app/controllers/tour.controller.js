@@ -16,6 +16,8 @@ exports.create = (req, res) => {
     const tour = {
         name: req.body.name,
         description: req.body.description,
+        start_date: req.body.start_date,
+        end_date: req.body.end_date,
         active: req.body.active ? req.body.active : false
     };
 

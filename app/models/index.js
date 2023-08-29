@@ -47,6 +47,7 @@ db.countries = require("./country.model.js")(sequelize, Sequelize);
 db.states = require("./state.model.js")(sequelize, Sequelize);
 db.legtypes = require("./legType.model.js")(sequelize, Sequelize);
 db.freighttypes = require("./freightType.model.js")(sequelize, Sequelize);
+db.freightmethods = require("./freightMethod.model.js")(sequelize, Sequelize);
 
 
 // RELATIONSHIPS
@@ -90,6 +91,10 @@ db.pallets.belongsTo(db.containers, { as: "container" })
 // one shipment to many containers
 db.shipments.hasMany(db.containers, { as: "container" })
 db.containers.belongsTo(db.shipments, { as: "shipment" })
+
+// one contact to many quotes
+db.contacts.hasMany(db.quotes, { as: "quotes" })
+db.quotes.belongsTo(db.contacts, { as: "contact" })
 
 //one quote to many shipments
 db.quotes.hasMany(db.shipments, { as: "shipment" })

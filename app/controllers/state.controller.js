@@ -5,7 +5,7 @@ const Op = db.Sequelize.Op;
 // Create and Save new
 exports.create = (req, res) => {
 // Validate request
-    if (!req.body.name) {
+    if (!req.body.state_full) {
         res.status(400).send({
             message: "Content can not be empty!"
         });
@@ -13,14 +13,14 @@ exports.create = (req, res) => {
     }
 
     // Create
-    const state = {
+    const stateObj = {
         state_abbreviation: req.body.state_abbreviation,
-        state: req.body.state,
+        state_full: req.body.state_full,
         active: req.body.active ? req.body.active : false
     };
 
     // Save
-    State.create(state)
+    State.create(stateObj)
         .then(data => {
             res.send(data);
         })
@@ -34,8 +34,8 @@ exports.create = (req, res) => {
 
 // Retrieve all
 exports.findAll = (req, res) => {
-    const name = req.query.name;
-    let condition = name ? { name: { [Op.like]: `%${name}%` } } : null;
+    const state_full = req.query.name;
+    let condition = state_full ? { state_full: { [Op.like]: `%${state_full}%` } } : null;
 
     State.findAll({ where: condition })
         .then(data => {

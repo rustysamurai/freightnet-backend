@@ -1,5 +1,5 @@
 const db = require("../models");
-const Vehicletype = db.vehicletypes;
+const VehicleType = db.vehicletypes;
 const Op = db.Sequelize.Op;
 
 // Create and Save new
@@ -20,7 +20,7 @@ exports.create = (req, res) => {
     };
 
     // Save
-    Vehicletype.create(vehicletype)
+    VehicleType.create(vehicletype)
         .then(data => {
             res.send(data);
         })
@@ -37,14 +37,14 @@ exports.findAll = (req, res) => {
     const name = req.query.name;
     let condition = name ? { name: { [Op.like]: `%${name}%` } } : null;
 
-    Vehicletype.findAll({ where: condition })
+    VehicleType.findAll({ where: condition })
         .then(data => {
             res.send(data);
         })
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while retrieving vehicletypes."
+                    err.message || "Some error occurred while retrieving vehicle types."
             });
         });
 };
@@ -53,7 +53,7 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
     const id = req.params.id;
 
-    Vehicletype.findByPk(id)
+    VehicleType.findByPk(id)
         .then(data => {
             if (data) {
                 res.send(data);
@@ -74,7 +74,7 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
     const id = req.params.id;
 
-    Vehicletype.update(req.body, {
+    VehicleType.update(req.body, {
         where: { id: id }
     })
         .then(num => {
@@ -99,7 +99,7 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
     const id = req.params.id;
 
-    Vehicletype.destroy({
+    VehicleType.destroy({
         where: { id: id }
     })
         .then(num => {
@@ -127,7 +127,7 @@ exports.delete = (req, res) => {
 
 // Find all active
 exports.findAllPublished = (req, res) => {
-    Vehicletype.findAll({ where: { active: true } })
+    VehicleType.findAll({ where: { active: true } })
         .then(data => {
             res.send(data);
         })

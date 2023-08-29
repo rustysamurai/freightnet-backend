@@ -25,5 +25,5 @@ module.exports = app => {
     // Delete all flightCases
     //router.delete("/",  flightCase.deleteAll);
   
-    app.use('/api/flightCase', router);
+    app.use('/api/flightcase', router);
   };

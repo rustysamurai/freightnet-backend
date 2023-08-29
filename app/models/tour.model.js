@@ -6,6 +6,12 @@ module.exports = (sequelize, Sequelize) => {
         description: {
             type: Sequelize.STRING
         },
+        start_date: {
+            type: Sequelize.DATE
+        },
+        end_date: {
+            type: Sequelize.DATE
+        },
         active: {
             type: Sequelize.BOOLEAN
         }

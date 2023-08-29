@@ -15,18 +15,6 @@ module.exports = (sequelize, Sequelize) => {
         trim: {
             type: Sequelize.STRING
         },
-        metre_unit: {
-            type: Sequelize.STRING
-        },
-        fuel_volume_units: {
-            type: Sequelize.STRING
-        },
-        vehicle_type: {
-            type: Sequelize.STRING
-        },
-        group: {
-            type: Sequelize.STRING
-        },
         vin: {
             type: Sequelize.STRING
         },
@@ -36,34 +24,19 @@ module.exports = (sequelize, Sequelize) => {
         license_plate: {
             type: Sequelize.STRING
         },
-        // current_meter: {
-        //     type: Sequelize.STRING
-        // },
-        purchase_vendor: {
-            type: Sequelize.STRING
-        },
-        purchase_date: {
-            type: Sequelize.STRING
-        },
-        purchase_price: {
-            type: Sequelize.STRING
-        },
         warranty_expiration_date: {
-            type: Sequelize.STRING
+            type: Sequelize.DATE
+        },
+        rego_expiration_date: {
+            type: Sequelize.DATE
         },
         fuel_type: {
             type: Sequelize.STRING
         },
-        fuel_type: {
-            type: Sequelize.STRING
-        },
-        // notes: {
-        //     type: Sequelize.STRING
-        // },
         registration_state: {
             type: Sequelize.STRING
         },
-        ownership: {
+        ownership_type: {
             type: Sequelize.STRING
         },
         body_type: {
@@ -76,9 +49,6 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING
         },
         brake_system: {
-            type: Sequelize.STRING
-        },
-        fuel_tank_capacity: {
             type: Sequelize.STRING
         },
         fuel_tank_capacity: {
@@ -102,9 +72,6 @@ module.exports = (sequelize, Sequelize) => {
         engine_cylinders:{
             type: Sequelize.STRING
         },
-        reserved_for:{
-            type: Sequelize.STRING
-        },
         build_month:{
             type: Sequelize.STRING
         },
@@ -113,6 +80,9 @@ module.exports = (sequelize, Sequelize) => {
         },
         external_id: {
             type: Sequelize.STRING
+        },
+        on_road:{
+            type: Sequelize.BOOLEAN
         },
         active: {
             type: Sequelize.BOOLEAN

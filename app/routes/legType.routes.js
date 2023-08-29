@@ -25,5 +25,5 @@ module.exports = app => {
     // Delete all legTypes
     //router.delete("/",  legType.deleteAll);
   
-    app.use('/api/legType', router);
+    app.use('/api/legtype', router);
   };

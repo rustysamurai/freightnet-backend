@@ -5,7 +5,7 @@ const Op = db.Sequelize.Op;
 // Create and Save new
 exports.create = (req, res) => {
 // Validate request
-    if (!req.body.name) {
+    if (!req.body.origin) {
         res.status(400).send({
             message: "Content can not be empty!"
         });
@@ -14,8 +14,9 @@ exports.create = (req, res) => {
 
     // Create
     const shipmentleg = {
-        name: req.body.name,
-        description: req.body.description,
+        origin: req.body.origin,
+        destination: req.body.destination,
+        distance: req.body.distance,
         active: req.body.active ? req.body.active : false
     };
 
@@ -34,8 +35,8 @@ exports.create = (req, res) => {
 
 // Retrieve all
 exports.findAll = (req, res) => {
-    const name = req.query.name;
-    let condition = name ? { name: { [Op.like]: `%${name}%` } } : null;
+    const origin = req.query.origin;
+    let condition = origin ? { origin: { [Op.like]: `%${origin}%` } } : null;
 
     ShipmentLeg.findAll({ where: condition })
         .then(data => {

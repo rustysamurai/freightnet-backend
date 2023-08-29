@@ -1,10 +1,13 @@
 module.exports = (sequelize, Sequelize) => {
     const ShipmentLeg = sequelize.define("shipmentlegs", {
-        name: {
+        origin: {
             type: Sequelize.STRING
         },
-        description: {
+        destination: {
             type: Sequelize.STRING
+        },
+        distance:{
+            type: Sequelize.INTEGER
         },
         active: {
             type: Sequelize.BOOLEAN

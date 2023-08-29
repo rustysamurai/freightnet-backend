@@ -25,5 +25,5 @@ module.exports = app => {
     // Delete all freightTypes
     //router.delete("/",  freightType.deleteAll);
   
-    app.use('/api/freightType', router);
+    app.use('/api/freighttype', router);
   };
